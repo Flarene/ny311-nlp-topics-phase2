@@ -1,0 +1,15 @@
+topic,model,examples
+0,LDA,Sewer Sewer Backup (Use Comments) (SA) | Lost Property Electronics/Phones | Drug Activity Use Indoor
+1,LDA,Illegal Parking Blocked Hydrant | Illegal Parking Blocked Sidewalk | Blocked Driveway No Access
+2,LDA,Sidewalk Condition Broken Sidewalk | Noise - Residential Loud Talking | Noise - Residential Loud Television
+3,LDA,Non-Emergency Police Matter Other (complaint details) | Illegal Parking Posted Parking Sign Violation | Non-Emergency Police Matter Trespassing
+4,LDA,HEAT/HOT WATER ENTIRE BUILDING | Taxi Complaint Driver Complaint - Passenger | Green Taxi Complaint Driver Complaint - Passenger
+5,LDA,Noise - Park Loud Music/Party | Noise - Residential Loud Music/Party | Noise - Vehicle Car/Truck Music
+6,LDA,Noise - Street/Sidewalk Loud Music/Party | Noise - Commercial Loud Music/Party | Street Light Condition Street Light Out
+0,NMF,Noise - Residential Loud Music/Party | Noise - Residential Loud Talking | Noise - Residential Loud Television
+1,NMF,HEAT/HOT WATER ENTIRE BUILDING | HEAT/HOT WATER APARTMENT ONLY | WATER LEAK SLOW LEAK
+2,NMF,Noise - Residential Banging/Pounding | Noise - Commercial Banging/Pounding | Noise - Residential Loud Talking
+3,NMF,Blocked Driveway No Access | Blocked Driveway Partial Access | Illegal Parking Blocked Sidewalk
+4,NMF,Noise - Commercial Loud Music/Party | Noise - Commercial Loud Talking | Noise - Commercial Banging/Pounding
+5,NMF,Illegal Parking Blocked Hydrant | Illegal Parking Blocked Sidewalk | Illegal Parking Commercial Overnight Parking
+6,NMF,Noise - Street/Sidewalk Loud Talking | Noise - Street/Sidewalk Loud Music/Party | Noise - Residential Loud Talking

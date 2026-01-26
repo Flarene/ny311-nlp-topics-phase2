@@ -1,0 +1,36 @@
+Rows used: 900
+Vocabulary size: 203
+
+Top terms by total COUNT:
+  noise: 543
+  loud: 439
+  music: 400
+  party: 387
+  loud music: 387
+  music party: 387
+  noise residential: 373
+  residential: 373
+  residential loud: 301
+  parking: 122
+  blocked: 122
+  commercial: 116
+  water: 108
+  hot water: 103
+  hot: 103
+
+Top terms by mean TF-IDF:
+  noise: 0.1397
+  loud: 0.1354
+  music party: 0.1320
+  party: 0.1320
+  loud music: 0.1320
+  music: 0.1316
+  noise residential: 0.1315
+  residential: 0.1315
+  residential loud: 0.1244
+  commercial: 0.0496
+  noise commercial: 0.0466
+  blocked: 0.0464
+  commercial loud: 0.0455
+  water: 0.0396
+  parking: 0.0395

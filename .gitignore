@@ -1,0 +1,6 @@
+# Junk / local environment
+.venv/
+.idea/
+__pycache__/
+*.pyc
+
