@@ -1,6 +1,6 @@
 Input file: ny311_ready_900.csv
 Rows used after preprocessing: 151
-Chosen K: 7 
+Chosen K: 10 (selected by coherence)
 Coherence metric (if selecting K): u_mass
 Vectorizer stop_words: english
 Vectorizer ngram_range: (1,2)
