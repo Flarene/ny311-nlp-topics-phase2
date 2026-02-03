@@ -11,4 +11,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+Add-Content -Path .gitignore -Value "`n# Large raw dataset (do not push)`nraw/311-service-requests-from-2010-to-present.csv`n"
 
