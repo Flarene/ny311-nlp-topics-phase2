@@ -85,6 +85,115 @@ def vectorize_texts(
     return (X_counts, count_vec), (X_tfidf, tfidf_vec)
 
 
+def write_vectorization_comparison(
+    out_path: Path,
+    *,
+    X_counts,
+    X_tfidf,
+    feature_names: np.ndarray,
+    top_n: int = 15,
+):
+    """Write a brief, evidence-based comparison of the two vectorizers.
+
+    The assignment asks to "briefly compare" vectorization approaches. This
+    function produces a small, reviewer-friendly artifact describing:
+    - Feature space size
+    - Sparsity / average non-zeros per document
+    - Average document length proxy (sum of counts)
+    - What dominates each representation (top global terms)
+
+    Notes:
+    - TF-IDF uses the same vocabulary as counts in this pipeline, so feature
+      counts may match; the key difference is weighting/normalization.
+    """
+    n_docs, n_feats = X_counts.shape
+
+    # ------------------------------
+    # Matrix-level metrics
+    # ------------------------------
+    nnz_counts = int(getattr(X_counts, "nnz", 0))
+    nnz_tfidf = int(getattr(X_tfidf, "nnz", 0))
+    density_counts = (nnz_counts / (n_docs * n_feats)) if (n_docs and n_feats) else float("nan")
+    density_tfidf = (nnz_tfidf / (n_docs * n_feats)) if (n_docs and n_feats) else float("nan")
+
+    # average number of non-zero features per doc
+    try:
+        avg_nnz_counts = float(np.mean(X_counts.getnnz(axis=1)))
+    except Exception:
+        avg_nnz_counts = float("nan")
+    try:
+        avg_nnz_tfidf = float(np.mean(X_tfidf.getnnz(axis=1)))
+    except Exception:
+        avg_nnz_tfidf = float("nan")
+
+    # average total token count proxy per doc (counts only)
+    try:
+        avg_token_count = float(np.mean(np.asarray(X_counts.sum(axis=1)).ravel()))
+    except Exception:
+        avg_token_count = float("nan")
+
+    # average TF-IDF L2 norm per doc (often ~1.0 when norm='l2')
+    try:
+        # X.multiply(X).sum(axis=1) is efficient for sparse matrices
+        l2 = np.sqrt(np.asarray(X_tfidf.multiply(X_tfidf).sum(axis=1)).ravel())
+        avg_tfidf_l2 = float(np.mean(l2))
+    except Exception:
+        avg_tfidf_l2 = float("nan")
+
+    # ------------------------------
+    # Top global terms (what dominates each representation)
+    # ------------------------------
+    counts_sum = np.asarray(X_counts.sum(axis=0)).ravel()
+    tfidf_sum = np.asarray(X_tfidf.sum(axis=0)).ravel()
+
+    top_counts_idx = np.argsort(counts_sum)[::-1][:top_n]
+    top_tfidf_idx = np.argsort(tfidf_sum)[::-1][:top_n]
+
+    top_counts = [(str(feature_names[i]), int(counts_sum[i])) for i in top_counts_idx]
+    top_tfidf = [(str(feature_names[i]), float(tfidf_sum[i])) for i in top_tfidf_idx]
+
+    # Concentration: how much of the total mass is in the top terms?
+    total_counts = float(np.sum(counts_sum)) if counts_sum.size else float("nan")
+    top10_counts_mass = float(np.sum(counts_sum[top_counts_idx[:10]])) if counts_sum.size else float("nan")
+    counts_top10_share = (top10_counts_mass / total_counts) if (total_counts and np.isfinite(total_counts)) else float("nan")
+
+    total_tfidf = float(np.sum(tfidf_sum)) if tfidf_sum.size else float("nan")
+    top10_tfidf_mass = float(np.sum(tfidf_sum[top_tfidf_idx[:10]])) if tfidf_sum.size else float("nan")
+    tfidf_top10_share = (top10_tfidf_mass / total_tfidf) if (total_tfidf and np.isfinite(total_tfidf)) else float("nan")
+
+    lines = []
+    lines.append("VECTORIZE COMPARISON (Count vs TF-IDF)")
+    lines.append("=")
+    lines.append(f"Documents: {n_docs}")
+    lines.append(f"Features (vocabulary size): {n_feats}")
+    lines.append("")
+    lines.append("Matrix characteristics")
+    lines.append(f"- CountVectorizer nnz: {nnz_counts:,} | density: {density_counts:.6f} | avg nnz/doc: {avg_nnz_counts:.2f}")
+    lines.append(f"- TfidfVectorizer  nnz: {nnz_tfidf:,} | density: {density_tfidf:.6f} | avg nnz/doc: {avg_nnz_tfidf:.2f}")
+    lines.append(f"- Avg token count proxy per doc (counts): {avg_token_count:.2f}")
+    lines.append(f"- Avg TF-IDF L2 norm per doc: {avg_tfidf_l2:.4f}")
+    lines.append("")
+    lines.append("Interpretation")
+    lines.append("- CountVectorizer uses raw frequencies; globally frequent terms tend to dominate topic-word lists.")
+    lines.append("- TF-IDF downweights terms that appear in many documents; more specific terms often rise in prominence.")
+    lines.append("")
+    lines.append(f"Top terms by global COUNT (top {top_n})")
+    for term, val in top_counts:
+        lines.append(f"- {term}: {val}")
+    lines.append(f"Top-10 share of total count mass: {counts_top10_share:.4f}")
+    lines.append("")
+    lines.append(f"Top terms by global TF-IDF weight (top {top_n})")
+    for term, val in top_tfidf:
+        lines.append(f"- {term}: {val:.4f}")
+    lines.append(f"Top-10 share of total TF-IDF mass: {tfidf_top10_share:.4f}")
+    lines.append("")
+    lines.append("Practical guidance")
+    lines.append("- LDA is trained on counts because it models word occurrence counts directly.")
+    lines.append("- NMF is trained on TF-IDF because weighting can produce sharper, more interpretable factorized topics.")
+
+    out_path.write_text("\n".join(lines), encoding="utf-8")
+
+
 def top_words_from_components(components: np.ndarray, feature_names: np.ndarray, top_n: int = 10) -> List[List[str]]:
     """Return topics as lists of top_n words."""
     topics: List[List[str]] = []
@@ -282,6 +391,14 @@ def main():
 
     feature_names = count_vec.get_feature_names_out()
     X_bin = (X_counts > 0).astype(np.int8)
+
+    # Export an evidence-based comparison between vectorization approaches
+    write_vectorization_comparison(
+        out_dir / "vectorization_comparison.txt",
+        X_counts=X_counts,
+        X_tfidf=X_tfidf,
+        feature_names=feature_names,
+    )
 
     # Optional tokenized texts for gensim coherence (if requested)
     tokenized_texts = None
