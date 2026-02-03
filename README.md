@@ -34,7 +34,7 @@ pip install -r requirements.txt
 
 ## Run
 
-### 1) Coherence-based K selection (recommended)
+### 1) Coherence-based K selection
 
 This runs the full pipeline and tests a K range (default 3–12) to choose a good number of topics:
 
