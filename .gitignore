@@ -11,7 +11,7 @@ env/
 ENV/
 .conda/
 
-# IDE / editors
+# IDE /editors
 .idea/
 .vscode/
 *.iml
