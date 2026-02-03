@@ -1,13 +1,13 @@
 # NYC 311 Topic Modeling (NLP)
 
-This repo runs a small, end‑to‑end NLP workflow on a **900‑row sample** of the NYC 311 service requests dataset to surface the **most common complaint topics**.
+This repo runs a small, end-to-end NLP workflow on a **900-row sample** of the NYC 311 service requests dataset to surface the **most common complaint topics**.
 
 What it does, in order:
 - Build one analysis text field from **Complaint Type** + **Descriptor** (+ **Resolution Description** when you choose to include it)
 - Clean the text (basic normalization + removing obvious noise)
-- Vectorize the text in two ways: **Bag‑of‑Words (CountVectorizer)** and **TF‑IDF (TfidfVectorizer)**
-- Extract topics in two ways: **LDA** (on counts) and **NMF** (on TF‑IDF)
-- (Optional) try multiple topic counts **K** and pick the best using a coherence score
+- Vectorize the text in two ways: **Bag-of-Words (CountVectorizer)** and **TF-IDF (TfidfVectorizer)**
+- Extract topics in two ways: **LDA** (on counts) and **NMF** (on TF-IDF)
+- **Compute coherence over a range of topic counts (K) and select the best K** (this is part of the required workflow)
 
 ---
 
@@ -27,22 +27,24 @@ pip install -r requirements.txt
 
 ---
 
-## Run
+## Run (required: coherence-based K selection)
 
-From the repo root:
+From the repo root, run coherence scoring to choose K:
 
-### 1) Auto-select K using coherence (recommended)
 ```bash
 python run_topic_models_with_coherence_v2.py --input ny311_ready_900.csv --select_k --k_min 3 --k_max 12 --k_step 1 --choose_by avg
 ```
 
-### 2) Use a fixed number of topics (example: K=7)
-```bash
-python run_topic_models_with_coherence_v2.py --input ny311_ready_900.csv --k 7
-```
+This will:
+- try multiple values of **K**
+- write coherence results to `outputs/coherence_scores.csv`
+- pick a final K (printed in the console output)
+- export LDA + NMF topics and example rows into `outputs/`
 
-### 3) Include “Resolution Description” (optional)
+### Include “Resolution Description” (optional)
+
 If you want the model to also use the resolution text (when present), add:
+
 ```bash
 --include_resolution
 ```
@@ -54,9 +56,9 @@ If you want the model to also use the resolution text (when present), add:
 
 ## Outputs
 
-The script writes results into `outputs/` (and this folder is kept in the repo so reviewers can open files directly):
+Results are written into `outputs/` (and this folder is kept in the repo so reviewers can open files directly):
 
-- `outputs/coherence_scores.csv` – coherence per K (when `--select_k` is used)
+- `outputs/coherence_scores.csv` – coherence per K (used to select the final K)
 - `outputs/lda_topics.csv` – LDA topic keywords
 - `outputs/nmf_topics.csv` – NMF topic keywords
 - `outputs/representative_examples.csv` – example rows per topic
@@ -68,7 +70,6 @@ The script writes results into `outputs/` (and this folder is kept in the repo s
 ## Common issues
 
 - **FileNotFoundError**: run from the repo root, or pass a full path like:
-  - Windows: `--input "C:\path\to\repo\ny311_ready_900.csv"`
+  - Windows: `--input "C:\\path\\to\\repo\\ny311_ready_900.csv"`
   - macOS/Linux: `--input "/path/to/repo/ny311_ready_900.csv"`
 - **Missing packages**: make sure you installed into the same Python environment you’re running.
-
