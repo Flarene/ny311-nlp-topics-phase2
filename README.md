@@ -7,7 +7,7 @@ What it does, in order:
 - Clean the text (basic normalization + removing obvious noise)
 - Vectorize the text in two ways: **Bag-of-Words (CountVectorizer)** and **TF-IDF (TfidfVectorizer)**
 - Extract topics in two ways: **LDA** (on counts) and **NMF** (on TF-IDF)
-- **Compute coherence over a range of topic counts (K) and select the best K** (this is part of the required workflow)
+- **Compute coherence over a range of topic counts (K) and select the best K** 
 
 ---
 
