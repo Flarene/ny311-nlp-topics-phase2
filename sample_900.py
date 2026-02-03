@@ -14,7 +14,7 @@ except Exception as e:
     print("INPUT_FAIL:", inp)
     raise
 
-# Step B: test output write
+# Step B:  test output write
 try:
     fout = open(out, "w", encoding="utf-8", newline="")
     fout.close()
