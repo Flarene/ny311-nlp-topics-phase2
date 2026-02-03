@@ -1,46 +1,32 @@
-# NYC 311 Topic Modeling (NLP) — Phase 2
+# NYC 311 Topic Modeling (NLP)
 
-This repo runs a small, end-to-end topic modeling workflow on a **900-row sample** of the NYC 311 service requests dataset.
-The goal is to surface the **most common complaint themes** using two vectorizers and two topic-modeling techniques.
+This repo runs a small, end-to-end NLP workflow on a **900-row sample** of the NYC 311 service requests dataset to surface the **most common complaint topics**.
 
-## What’s inside
+What the pipeline does:
 
-Pipeline (in order):
-
-1. Build one analysis text field from **Complaint Type + Descriptor**  
-   (optionally **+ Resolution Description** when it exists and you enable it)
-2. Clean the text (lowercase, collapse whitespace, remove URLs/emails/phone-like strings, strip noisy punctuation)
-3. Vectorize the text in two ways:
-   - **CountVectorizer** (bag-of-words counts)
-   - **TfidfVectorizer** (TF-IDF weights)
-4. Extract topics in two ways:
-   - **LDA** (trained on counts)
-   - **NMF** (trained on TF-IDF)
-5. Select the number of topics **K** by testing a small range and scoring coherence (**u_mass**)
-
-Repo link (code + outputs): https://github.com/Flarene/ny311-nlp-topics-phase2
+- Builds one analysis text field from **Complaint Type** + **Descriptor** + **Resolution Description** (when the column is available)
+- Cleans the text (basic normalization + removing obvious noise)
+- Vectorizes the text two ways: **Bag-of-Words (CountVectorizer)** and **TF-IDF (TfidfVectorizer)**
+- Extracts topics two ways: **LDA** (on counts) and **NMF** (on TF-IDF)
+- Evaluates a small range of topic counts (**K**) using a **coherence score** and selects the best K
 
 ---
 
 ## Dataset
 
-- Original source: NYC 311 “Service Requests” (via Kaggle)
-- This repo includes a small prepared sample: **`ny311_ready_900.csv`**
-- The full raw Kaggle file is **not** stored here because it is too large for GitHub.
+- **Name:** *NY 311 Service Requests* (City of New York 311 cases)
+- **Source:** Kaggle — `new-york-city/ny-311-service-requests`
+  - Link: `https://www.kaggle.com/datasets/new-york-city/ny-311-service-requests`
+- This repo includes only a prepared sample: **`ny311_ready_900.csv`** (900 rows) to keep runtime reasonable and the repository lightweight.
+- The full raw dataset is **not committed** (it is too large for standard GitHub pushes). If you want the full file, download it from Kaggle and keep it locally.
 
 ---
 
 ## Setup
 
-Create a virtual environment and install dependencies:
+From the repo root:
 
 ```bash
-python -m venv .venv
-# Windows:
-.venv\Scripts\activate
-# macOS/Linux:
-source .venv/bin/activate
-
 pip install -r requirements.txt
 ```
 
@@ -48,39 +34,39 @@ pip install -r requirements.txt
 
 ## Run
 
-From the repo root:
+### 1) Coherence-based K selection (recommended)
+
+This runs the full pipeline and tests a K range (default 3–12) to choose a good number of topics:
 
 ```bash
 python run_topic_models_with_coherence.py --input ny311_ready_900.csv --select_k --k_min 3 --k_max 12 --k_step 1 --choose_by avg
 ```
 
-To also use the “Resolution Description” text when available:
+Notes:
+- `--input` is optional (defaults to `ny311_ready_900.csv` in the repo root), but it’s safer to pass it explicitly if you run from an IDE with a different working directory.
+- The selected K is printed in the console output.
+
+### 2) Fixed K (quick run)
+
+If you already know K:
 
 ```bash
-python run_topic_models_with_coherence.py --input ny311_ready_900.csv --include_resolution --select_k --k_min 3 --k_max 12 --k_step 1 --choose_by avg
+python run_topic_models_with_coherence.py --input ny311_ready_900.csv --k 7
 ```
 
-Tip (PyCharm): set **Working directory** to the repo root so relative paths like `ny311_ready_900.csv` work.
-
 ---
 
-## Outputs (committed for easy review)
+## Outputs
 
-All results are written to `outputs/`:
+Results are written into `outputs/` (and this folder is kept in the repo so reviewers can open files directly):
 
-- `outputs/coherence_scores.csv` — coherence score per K (used to pick the final K)
-- `outputs/lda_topics.csv` — top keywords per LDA topic
-- `outputs/nmf_topics.csv` — top keywords per NMF topic
-- `outputs/representative_examples.csv` — example complaints per topic (helps interpret topics)
-- `outputs/preprocessing_summary.txt` — quick summary of how the text was cleaned
-- `outputs/vectorization_summary.txt` — vectorizer settings + feature counts
-- `outputs/vectorization_comparison.txt` — a small, evidence-based comparison (vocab size, sparsity, top terms)
+- `outputs/coherence_scores.csv` – coherence per K (used to select the final K)
+- `outputs/lda_topics.csv` – LDA topic keywords
+- `outputs/nmf_topics.csv` – NMF topic keywords
+- `outputs/representative_examples.csv` – example rows per topic
+- `outputs/preprocessing_summary.txt` – quick summary of cleaning steps
+- `outputs/vectorization_summary.txt` – vectorizer settings + feature counts
+- `outputs/vectorization_comparison.txt` – simple quantitative comparison of count vs TF-IDF representations
 
----
 
-## Common issues
-
-- **FileNotFoundError**: run from the repo root, or pass a full path:
-  - Windows: `--input "C:\Users\...\PythonProject2\ny311_ready_900.csv"`
-- **Interpreter / missing packages**: make sure PyCharm is using the project `.venv`, then run `pip install -r requirements.txt`.
 
