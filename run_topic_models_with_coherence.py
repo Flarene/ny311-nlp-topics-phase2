@@ -1,6 +1,6 @@
 """run_topic_models_with_coherence_v3.py
 
-NYC 311 Topic Modeling — Conception Phase (implementation)
+NYC 311 Topic Modeling — Conception Phase (implementation).
 
 Goals implemented (matching the provided conception phase plan):
 - Sample data source: NY 311 Service Requests CSV (e.g., 900 samples)
