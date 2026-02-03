@@ -32,10 +32,4 @@ coverage.xml
 htmlcov/
 *.log
 
-# ML / experiment tracking artifacts (optional)
-mlruns/
-mlflow.db
-*.sqlite
 
-# Large raw dataset (do not push to GitHub)
-raw/311-service-requests-from-2010-to-present.csv
