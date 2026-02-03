@@ -41,7 +41,7 @@ This will:
 - pick a final K (printed in the console output)
 - export LDA + NMF topics and example rows into `outputs/`
 
-### Include “Resolution Description” (optional)
+### Include “Resolution Description”
 
 If you want the model to also use the resolution text (when present), add:
 
