@@ -1,15 +1,22 @@
-topic,model,examples
-0,LDA,Sewer Sewer Backup (Use Comments) (SA) | Lost Property Electronics/Phones | Drug Activity Use Indoor
-1,LDA,Illegal Parking Blocked Hydrant | Illegal Parking Blocked Sidewalk | Blocked Driveway No Access
-2,LDA,Sidewalk Condition Broken Sidewalk | Noise - Residential Loud Talking | Noise - Residential Loud Television
-3,LDA,Non-Emergency Police Matter Other (complaint details) | Illegal Parking Posted Parking Sign Violation | Non-Emergency Police Matter Trespassing
-4,LDA,HEAT/HOT WATER ENTIRE BUILDING | Taxi Complaint Driver Complaint - Passenger | Green Taxi Complaint Driver Complaint - Passenger
-5,LDA,Noise - Park Loud Music/Party | Noise - Residential Loud Music/Party | Noise - Vehicle Car/Truck Music
-6,LDA,Noise - Street/Sidewalk Loud Music/Party | Noise - Commercial Loud Music/Party | Street Light Condition Street Light Out
-0,NMF,Noise - Residential Loud Music/Party | Noise - Residential Loud Talking | Noise - Residential Loud Television
-1,NMF,HEAT/HOT WATER ENTIRE BUILDING | HEAT/HOT WATER APARTMENT ONLY | WATER LEAK SLOW LEAK
-2,NMF,Noise - Residential Banging/Pounding | Noise - Commercial Banging/Pounding | Noise - Residential Loud Talking
-3,NMF,Blocked Driveway No Access | Blocked Driveway Partial Access | Illegal Parking Blocked Sidewalk
-4,NMF,Noise - Commercial Loud Music/Party | Noise - Commercial Loud Talking | Noise - Commercial Banging/Pounding
-5,NMF,Illegal Parking Blocked Hydrant | Illegal Parking Blocked Sidewalk | Illegal Parking Commercial Overnight Parking
-6,NMF,Noise - Street/Sidewalk Loud Talking | Noise - Street/Sidewalk Loud Music/Party | Noise - Residential Loud Talking
+best_topic,best_topic_prob,Complaint Type,Descriptor,Resolution Description,clean_text
+1,0.9670063284576574,Illegal Parking,Commercial Overnight Parking,The Police Department responded to the complaint and determined that police action was not necessary,illegal parking commercial overnight parking the police department responded to the complaint and determined that police action was not necessary
+1,0.9670030410573135,Noise - Residential,Banging/Pounding,The Police Department responded to the complaint but officers were unable to gain entry into the pre,noise residential banging pounding the police department responded to the complaint but officers were unable to gain entry into the pre
+1,0.9656841382752105,Illegal Parking,Posted Parking Sign Violation,Your complaint has been received by the Police Department and additional information will be availab,illegal parking posted parking sign violation your complaint has been received by the police department and additional information will be availab
+2,0.9285601628512017,Noise - Street/Sidewalk,Loud Music/Party,,noise street sidewalk loud music party
+2,0.9142779947461904,Noise - Residential,Loud Music/Party,,noise residential loud music party
+2,0.9142701446571555,Noise - Street/Sidewalk,Loud Talking,,noise street sidewalk loud talking
+3,0.9740191440983514,HEAT/HOT WATER,ENTIRE BUILDING,The following complaint conditions are still open. HPD may attempt to contact you to verify the correction of the condition or may conduct an inspection.,heat hot water entire building the following complaint conditions are still open hpd may attempt to contact you to verify the correction of the condition or may conduct an inspection
+3,0.9723447856222158,HEAT/HOT WATER,APARTMENT ONLY,The following complaint conditions are still open. HPD may attempt to contact you to verify the correction of the condition or may conduct an inspection.,heat hot water apartment only the following complaint conditions are still open hpd may attempt to contact you to verify the correction of the condition or may conduct an inspection
+3,0.9670115609122987,UNSANITARY CONDITION,PESTS,The following complaint conditions are still open. HPD may attempt to contact you to verify the correction of the condition or may conduct an inspection.,unsanitary condition pests the following complaint conditions are still open hpd may attempt to contact you to verify the correction of the condition or may conduct an inspection
+4,0.9610112716535264,Abandoned Vehicle,With License Plate,The Police Department reviewed your complaint and provided additional information below.,abandoned vehicle with license plate the police department reviewed your complaint and provided additional information below
+4,0.9610017655102313,Illegal Parking,Blocked Hydrant,The Police Department reviewed your complaint and provided additional information below.,illegal parking blocked hydrant the police department reviewed your complaint and provided additional information below
+4,0.9609827482011243,Illegal Parking,Blocked Hydrant,The Police Department responded and upon arrival those responsible for the condition were gone.,illegal parking blocked hydrant the police department responded and upon arrival those responsible for the condition were gone
+5,0.9142595982118638,Illegal Parking,Unauthorized Bus Layover,,illegal parking unauthorized bus layover
+5,0.9141904189501131,Non-Emergency Police Matter,Trespassing,,non emergency police matter trespassing
+5,0.9045733432369165,Non-Emergency Police Matter,Other (complaint details),,non emergency police matter other complaint details
+6,0.9670112809504252,Noise - Commercial,Car/Truck Horn,The Police Department responded to the complaint and with the information available observed no evid,noise commercial car truck horn the police department responded to the complaint and with the information available observed no evid
+6,0.9670110779850614,Noise - Vehicle,Car/Truck Horn,The Police Department responded to the complaint and with the information available observed no evid,noise vehicle car truck horn the police department responded to the complaint and with the information available observed no evid
+6,0.9670056121596664,Noise - Vehicle,Car/Truck Music,The Police Department responded to the complaint and with the information available observed no evid,noise vehicle car truck music the police department responded to the complaint and with the information available observed no evid
+7,0.904758233786774,Unsanitary Animal Pvt Property,Other Animal,,unsanitary animal pvt property other animal
+7,0.8928523342358167,Unsanitary Animal Pvt Property,Dog,,unsanitary animal pvt property dog
+7,0.8928523342358167,Unsanitary Animal Pvt Property,Cat,,unsanitary animal pvt property cat

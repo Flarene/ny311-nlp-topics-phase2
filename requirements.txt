@@ -1,6 +1,5 @@
 pandas>=2.0
 numpy>=1.24
 scikit-learn>=1.3
-# Optional: only needed if you choose --coherence c_v
 gensim>=4.3
-scipy<1.14
+scipy<1.10

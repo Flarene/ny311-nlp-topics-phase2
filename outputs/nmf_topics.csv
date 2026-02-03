@@ -1,8 +1,8 @@
-topic,top_words
-0,residential loud; residential; noise residential; loud music; music party; party; music; loud; noise; loud talking; talking; television
-1,water; hot water; hot; heat hot; heat; building; entire; water entire; entire building; apartment; water apartment; hydrant
-2,pounding; banging; banging pounding; residential banging; noise residential; residential; noise; talking; loud talking; commercial banging; residential loud; noise commercial
-3,driveway; access; blocked driveway; driveway access; blocked; partial; driveway partial; partial access; blocked sidewalk; parking blocked; sidewalk; use indoor
-4,commercial loud; noise commercial; commercial; party; music party; loud music; music; loud; noise; overnight; overnight parking; parking commercial
-5,parking; illegal parking; illegal; parking blocked; hydrant; blocked hydrant; blocked; overnight parking; overnight; commercial overnight; parking commercial; blocked sidewalk
-6,street sidewalk; sidewalk loud; noise street; street; sidewalk; loud talking; talking; loud; noise; loud music; party; music party
+model,topic_id,top_words
+NMF,1,"police, complaint determined, determined police, action necessary, necessary, determined, police action, action, responded complaint, responded"
+NMF,2,"condition, attempt contact, conduct, condition conduct, attempt, hpd, open hpd, verify correction, conduct inspection, correction"
+NMF,3,"parking, illegal, illegal parking, parking blocked, blocked, hydrant, blocked hydrant, blocked sidewalk, sidewalk, hydrant police"
+NMF,4,"additional information, additional, availab, department additional, information availab, received, received police, complaint received, information, police"
+NMF,5,"available observed, complaint information, information available, evid, observed evid, observed, available, information, responded complaint, responded"
+NMF,6,"loud, noise, party, loud music, music party, music, residential loud, residential, noise residential, party police"
+NMF,7,"access, blocked driveway, driveway, blocked, driveway access, access police, partial access, driveway partial, partial, access complaint"

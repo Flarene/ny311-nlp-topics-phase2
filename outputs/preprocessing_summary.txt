@@ -1,0 +1,5 @@
+Text columns used: Complaint Type, Descriptor, Resolution Description
+Rows input: 900
+Rows after dropping empty/missing text: 900
+Rows after dropping duplicate rows: 900
+Rows after dropping duplicate cleaned texts: 151

@@ -1,8 +1,8 @@
-topic,top_words
-0,sewer; homeless; homeless encampment; encampment; use; partial; driveway partial; partial access; street; condition; sewer sewer; street condition
-1,blocked; access; driveway; blocked driveway; driveway access; illegal; illegal parking; parking; parking blocked; hydrant; blocked hydrant; sidewalk
-2,talking; loud talking; loud; noise; noise residential; residential; residential loud; sidewalk; condition; sidewalk condition; broken; broken sidewalk
-3,vehicle; truck; car; car truck; noise vehicle; vehicle car; parking; truck music; noise; illegal parking; illegal; violation
-4,water; hot water; hot; heat hot; heat; noise; banging; pounding; banging pounding; residential banging; residential; noise residential
-5,music; noise; party; music party; loud music; loud; noise residential; residential; residential loud; park; park loud; noise park
-6,noise; loud; music; party; loud music; music party; noise commercial; commercial; commercial loud; street; street sidewalk; noise street
+model,topic_id,top_words
+LDA,1,"police, department, complaint, police department, responded complaint, responded, department responded, action, parking, complaint determined"
+LDA,2,"loud, noise, party, loud music, music party, music, residential loud, residential, noise residential, street"
+LDA,3,"condition, contact, condition conduct, conduct, attempt, attempt contact, conduct inspection, contact verify, open hpd, verify"
+LDA,4,"blocked, police, police department, department, complaint, blocked driveway, driveway, access, additional information, additional"
+LDA,5,"condition, sidewalk, illegal parking, illegal, complaint, parking, original, blocked sidewalk, parking blocked, blocked"
+LDA,6,"complaint, information, complaint information, information available, observed evid, observed, available observed, evid, available, police"
+LDA,7,"animal, request, property, use, unsanitary, unsanitary animal, pvt, animal pvt, pvt property, drug activity"
