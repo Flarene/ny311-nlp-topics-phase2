@@ -32,7 +32,7 @@ pip install -r requirements.txt
 From the repo root, run coherence scoring to choose K:
 
 ```bash
-python run_topic_models_with_coherence_v2.py --input ny311_ready_900.csv --select_k --k_min 3 --k_max 12 --k_step 1 --choose_by avg
+python run_topic_models_with_coherence.py --input ny311_ready_900.csv --select_k --k_min 3 --k_max 12 --k_step 1 --choose_by avg
 ```
 
 This will:
