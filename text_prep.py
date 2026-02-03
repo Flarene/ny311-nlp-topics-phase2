@@ -4,7 +4,7 @@ Reusable preprocessing utilities for the NY311 topic modeling pipeline.
 
 Conception phase requirements implemented here:
 - Build one input text field by concatenating: 'Complaint Type', 'Descriptor',
-  and (when available) 'Resolution Description'.
+  and (when available) 'Resolution Description'
 - Preprocessing plan (cleaning text):
   (1) Drop rows with missing/empty text and delete duplicates.
   (2) Apply normalization: convert text to lowercase and normalize whitespace.
