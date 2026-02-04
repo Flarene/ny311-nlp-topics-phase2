@@ -1,4 +1,4 @@
-"""run_topic_models_with_coherence_v3.py
+"""run_topic_models_with_coherence.py
 
 NYC 311 Topic Modeling — Conception Phase (implementation)
 
