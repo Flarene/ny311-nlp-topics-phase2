@@ -1,0 +1,54 @@
+VECTORIZE COMPARISON (Count vs TF-IDF)
+=
+Documents: 151
+Features (vocabulary size): 288
+
+Matrix characteristics
+- CountVectorizer nnz: 2,411 | density: 0.055441 | avg nnz/doc: 15.97
+- TfidfVectorizer  nnz: 2,411 | density: 0.055441 | avg nnz/doc: 15.97
+- Avg token count proxy per doc (counts): 16.30
+- Avg TF-IDF L2 norm per doc: 1.0000
+
+Interpretation
+- CountVectorizer uses raw frequencies; globally frequent terms tend to dominate topic-word lists.
+- TF-IDF downweights terms that appear in many documents; more specific terms often rise in prominence.
+
+Top terms by global COUNT (top 15)
+- complaint: 95
+- police: 90
+- department: 74
+- police department: 73
+- noise: 57
+- responded: 48
+- department responded: 48
+- responded complaint: 43
+- condition: 41
+- information: 41
+- loud: 37
+- parking: 29
+- music: 27
+- blocked: 26
+- noise residential: 24
+Top-10 share of total count mass: 0.2478
+
+Top terms by global TF-IDF weight (top 15)
+- police: 10.5286
+- complaint: 9.9834
+- noise: 9.7899
+- department: 8.7264
+- police department: 8.5843
+- loud: 7.1245
+- department responded: 7.0792
+- responded: 7.0792
+- responded complaint: 6.6980
+- condition: 6.5863
+- information: 6.3447
+- parking: 6.1080
+- music: 5.6274
+- blocked: 5.4027
+- residential: 5.3050
+Top-10 share of total TF-IDF mass: 0.1498
+
+Practical guidance
+- LDA is trained on counts because it models word occurrence counts directly.
+- NMF is trained on TF-IDF because weighting can produce sharper, more interpretable factorized topics.
