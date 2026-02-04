@@ -2,7 +2,7 @@
 
 NYC 311 Topic Modeling — Conception Phase (implementation).
 
-Goals implemented (matching the provided conception phase plan):
+Goals implemented:
 - Sample data source: NY 311 Service Requests CSV (e.g., 900 samples)
 - Complaint information used for analysis:
     * 'Complaint Type'
@@ -33,8 +33,8 @@ Outputs (written to ./outputs by default):
 - coherence_scores.csv (only when --select_k is used)
 
 Usage examples:
-  python run_topic_models_with_coherence_v3.py --input ny311_ready_900.csv --k 7
-  python run_topic_models_with_coherence_v3.py --input ny311_ready_900.csv --select_k --k_min 3 --k_max 12
+  python run_topic_models_with_coherence.py --input ny311_ready_900.csv --k 7
+  python run_topic_models_with_coherence.py --input ny311_ready_900.csv --select_k --k_min 3 --k_max 12
 """
 
 from __future__ import annotations
@@ -93,7 +93,7 @@ def write_vectorization_comparison(
     feature_names: np.ndarray,
     top_n: int = 15,
 ):
-    """Write a brief, evidence-based comparison of the two vectorizers.
+    """Here I Write a brief, evidence-based comparison of the two vectorizers.
 
     The assignment asks to "briefly compare" vectorization approaches. This
     function produces a small, reviewer-friendly artifact describing:
@@ -132,7 +132,7 @@ def write_vectorization_comparison(
     except Exception:
         avg_token_count = float("nan")
 
-    # average TF-IDF L2 norm per doc (often ~1.0 when norm='l2')
+    # average TF-IDF L2 norm per doc
     try:
         # X.multiply(X).sum(axis=1) is efficient for sparse matrices
         l2 = np.sqrt(np.asarray(X_tfidf.multiply(X_tfidf).sum(axis=1)).ravel())
@@ -228,7 +228,7 @@ def fit_models(X_counts, X_tfidf, feature_names: np.ndarray, k: int, random_stat
 
 
 def coherence_u_mass(X_bin, feature_names: np.ndarray, topics: List[List[str]], top_n: int = 10) -> float:
-    """UMass coherence using a binary doc-term matrix (no gensim required)."""
+    """UMass coherence using a binary doc-term matrix."""
     df = np.asarray(X_bin.sum(axis=0)).ravel().astype(float)
     idx = {t: i for i, t in enumerate(feature_names)}
 
@@ -400,7 +400,7 @@ def main():
         feature_names=feature_names,
     )
 
-    # Optional tokenized texts for gensim coherence (if requested)
+    # Optional tokenized texts for gensim coherence
     tokenized_texts = None
     if args.coherence == "c_v":
         tokenized_texts = tokenize_for_gensim(texts, ngram_max=args.ngram_max, stop_words=stop_words)
