@@ -1,4 +1,4 @@
-# NY 311 topic modeling
+# NYC 311 Topic Modeling (NYC 311 Service Requests)
 
 
 ## Purpose
