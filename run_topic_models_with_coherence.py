@@ -334,11 +334,11 @@ def main():
     )
 
     # K selection
-    ap.add_argument("--k", type=int, default=7, help="Number of topics (K) when not using --select_k.")
-    ap.add_argument("--select_k", action="store_true", help="Auto-select K using coherence over a K range.")
-    ap.add_argument("--k_min", type=int, default=3, help="Minimum K to test when using --select_k.")
-    ap.add_argument("--k_max", type=int, default=12, help="Maximum K to test when using --select_k.")
-    ap.add_argument("--k_step", type=int, default=1, help="Step for K range when using --select_k.")
+    ap.add_argument("--k", type=int, default=10, help="Number of topics (K) when auto K selection is disabled (use --no-select_k).")
+    ap.add_argument("--select_k", action=argparse.BooleanOptionalAction, default=True, help="Select K using coherence over a K range (default: enabled). Use --no-select_k to disable and use --k.")
+    ap.add_argument("--k_min", type=int, default=3, help="Minimum K to test when selecting K via coherence.")
+    ap.add_argument("--k_max", type=int, default=12, help="Maximum K to test when selecting K via coherence.")
+    ap.add_argument("--k_step", type=int, default=1, help="Step size for the tested K range.")
     ap.add_argument("--coherence", default="u_mass", choices=["u_mass", "c_v"], help="Coherence metric.")
     ap.add_argument("--choose_by", default="avg", choices=["lda", "nmf", "avg"], help="Choose K by score source.")
 
