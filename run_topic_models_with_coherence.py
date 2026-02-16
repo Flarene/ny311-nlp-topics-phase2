@@ -30,11 +30,17 @@ Outputs (written to ./outputs by default):
 - lda_topics.csv
 - nmf_topics.csv
 - representative_examples.csv
-- coherence_scores.csv (only when --select_k is used)
+- coherence_scores.csv (generated during K selection; K selection is enabled by default)
 
 Usage examples:
-  python run_topic_models_with_coherence.py --input ny311_ready_900.csv --k 7
-  python run_topic_models_with_coherence.py --input ny311_ready_900.csv --select_k --k_min 3 --k_max 12
+  # Default: auto-select K (tests K range, computes coherence, picks best K)
+python run_topic_models_with_coherence.py --input ny311_ready_900.csv
+
+# Auto-select K with a custom range
+python run_topic_models_with_coherence.py --input ny311_ready_900.csv --k_min 3 --k_max 12
+
+# Fixed K (disable auto-selection)
+python run_topic_models_with_coherence.py --input ny311_ready_900.csv --no-select_k --k 7
 """
 
 from __future__ import annotations
