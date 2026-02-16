@@ -1,6 +1,6 @@
 """run_topic_models_with_coherence.py
 
-NYC 311 Topic Modeling — Conception Phase (implementation)
+NYC 311 Topic Modeling
 
 Goals implemented:
 - Sample data source: NY 311 Service Requests CSV (e.g., 900 samples)
@@ -26,6 +26,7 @@ Goals implemented:
 
 Outputs (written to ./outputs by default):
 - vectorization_summary.txt
+- vectorization_comparison.txt
 - preprocessing_summary.txt
 - lda_topics.csv
 - nmf_topics.csv
@@ -39,7 +40,7 @@ python run_topic_models_with_coherence.py --input ny311_ready_900.csv
 # Auto-select K with a custom range
 python run_topic_models_with_coherence.py --input ny311_ready_900.csv --k_min 3 --k_max 12
 
-# Fixed K (disable auto-selection)
+# Fixed K (disable auo-selection)
 python run_topic_models_with_coherence.py --input ny311_ready_900.csv --no-select_k --k 7
 """
 
